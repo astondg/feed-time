@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AcceptTermsOfUse.Content" xml:space="preserve">
+    <value>I accept the terms of use</value>
+  </data>
+  <data name="ActivityByHourGraphPlaceholder.Text" xml:space="preserve">
+    <value>baby's feed, sleep, change by hour</value>
+  </data>
+  <data name="ActivityHistoryButton.Content" xml:space="preserve">
+    <value>activity history</value>
+  </data>
+  <data name="ActivityName_Change" xml:space="preserve">
+    <value>change</value>
+  </data>
+  <data name="ActivityName_Feed" xml:space="preserve">
+    <value>feed</value>
+  </data>
+  <data name="ActivityName_Sleep" xml:space="preserve">
+    <value>sleep</value>
+  </data>
+  <data name="AddBaby_PageTitle_Create" xml:space="preserve">
+    <value>add baby</value>
+  </data>
+  <data name="AddBaby_PageTitle_Update" xml:space="preserve">
+    <value>update baby</value>
+  </data>
+  <data name="AppBarCreateChange.Label" xml:space="preserve">
+    <value>create</value>
+  </data>
+  <data name="AppBarCreateMeasurement.Label" xml:space="preserve">
+    <value>create</value>
+  </data>
+  <data name="AppBarEditBaby.Label" xml:space="preserve">
+    <value>edit baby</value>
+  </data>
+  <data name="AppBarNfc.Label" xml:space="preserve">
+    <value>manage nfc tags</value>
+  </data>
+  <data name="AppBarSettings.Label" xml:space="preserve">
+    <value>settings</value>
+  </data>
+  <data name="BabyDetailsDobField.Text" xml:space="preserve">
+    <value>date of birth</value>
+  </data>
+  <data name="BabyDetailsLengthField.Text" xml:space="preserve">
+    <value>length</value>
+  </data>
+  <data name="BabyDetailsNameField.Text" xml:space="preserve">
+    <value>name</value>
+  </data>
+  <data name="BabyDetailsWeightField.Text" xml:space="preserve">
+    <value>weight</value>
+  </data>
+  <data name="BackgroundTasksBlurb.Text" xml:space="preserve">
+    <value>allow feed time to provide background updates &amp; reminders of your babies schedule</value>
+  </data>
+  <data name="CreateChangeButton.Content" xml:space="preserve">
+    <value>change</value>
+  </data>
+  <data name="CreateMeasurementButton.Content" xml:space="preserve">
+    <value>measure</value>
+  </data>
+  <data name="CreateOrUpdateButton_Text_Create" xml:space="preserve">
+    <value>create</value>
+  </data>
+  <data name="CreateOrUpdateButton_Text_Update" xml:space="preserve">
+    <value>update</value>
+  </data>
+  <data name="Dialog_BackgroundTasksDisabled" xml:space="preserve">
+    <value>Background tasks are either disabled or the maximum number of background tasks has been reached on this device. If you would like feed timer to provide backkground updates please adjust your devices background task preferences.</value>
+    <comment>Informs the user that a background task cannot be registered for feed time because tasks are disabled or all available slots are full</comment>
+  </data>
+  <data name="Format_ActivityButtonHours" xml:space="preserve">
+    <value>current {0} ({1:0} hr {2:0} min)</value>
+  </data>
+  <data name="Format_ActivityButtonMinutes" xml:space="preserve">
+    <value>current {0} ({1:0} min)</value>
+  </data>
+  <data name="Format_ActivityStatus_Complete" xml:space="preserve">
+    <value>last {0} {1}</value>
+    <comment>A string formatter for displaying the duration of a completed activity</comment>
+  </data>
+  <data name="Format_ActivityStatus_RunningHours" xml:space="preserve">
+    <value>{0} for {1:0} hr {2:0} min</value>
+    <comment>A string formatter for displaying the duration of a running activity</comment>
+  </data>
+  <data name="Format_ActivityStatus_RunningMinutes" xml:space="preserve">
+    <value>{0} for {1:0} min</value>
+    <comment>A string formatter for displaying the duration of a running activity</comment>
+  </data>
+  <data name="Blurb_WelcomeToFeedTime" xml:space="preserve">
+    <value>Welcome to feed time. Get started by selecting an activity below.</value>
+  </data>
+  <data name="HubSectionBabyDetails.Header" xml:space="preserve">
+    <value>baby details</value>
+  </data>
+  <data name="HubSectionRhythm.Header" xml:space="preserve">
+    <value>rhythm</value>
+  </data>
+  <data name="HubSectionStatistics.Header" xml:space="preserve">
+    <value>status</value>
+  </data>
+  <data name="LengthSinceBirthGraph.Text" xml:space="preserve">
+    <value>baby's length by week</value>
+  </data>
+  <data name="LoadingStatus_Babies" xml:space="preserve">
+    <value>loading babies</value>
+  </data>
+  <data name="LoadingStatus_Baby" xml:space="preserve">
+    <value>loading baby</value>
+  </data>
+  <data name="LoadingStatus_Default" xml:space="preserve">
+    <value>loading</value>
+  </data>
+  <data name="LoadingStatus_Feed" xml:space="preserve">
+    <value>loading feed</value>
+  </data>
+  <data name="LoadingStatus_Measurements" xml:space="preserve">
+    <value>loading measurements</value>
+  </data>
+  <data name="LoadingStatus_Rhythm" xml:space="preserve">
+    <value>loading rhythm</value>
+  </data>
+  <data name="LoadingStatus_Schedule" xml:space="preserve">
+    <value>loading schedule</value>
+  </data>
+  <data name="LoadingStatus_Sleep" xml:space="preserve">
+    <value>loading sleep</value>
+  </data>
+  <data name="MoodByDayGraph.Text" xml:space="preserve">
+    <value>baby's mood by day</value>
+  </data>
+  <data name="PrivacyPolicyLink.Content" xml:space="preserve">
+    <value>privacy policy</value>
+  </data>
+  <data name="ReviewAppLink.Content" xml:space="preserve">
+    <value>review app</value>
+  </data>
+  <data name="SettingsGeneralSection.Header" xml:space="preserve">
+    <value>general</value>
+  </data>
+  <data name="SettingsSupportSection.Header" xml:space="preserve">
+    <value>support</value>
+  </data>
+  <data name="SignInBlurb.Text" xml:space="preserve">
+    <value>Feed Time allows you to access your data at any time across multiple devices and keeps your data stored safely even if you uninstall the app. To allow this you need to sign in with your Microsoft account. Please ensure that you read and agree to the privay declaration and terms &amp; conditions below before continuing.</value>
+  </data>
+  <data name="SignInButton.Content" xml:space="preserve">
+    <value>sign in</value>
+  </data>
+  <data name="SplashPageTitle.Text" xml:space="preserve">
+    <value>sign in</value>
+  </data>
+  <data name="StatusAveragesHeading.Text" xml:space="preserve">
+    <value>averages over the last 7 days</value>
+  </data>
+  <data name="StatusPlaceholder.Text" xml:space="preserve">
+    <value>your babies most recent activities and basic feed, sleep &amp; change statistics will show here</value>
+  </data>
+  <data name="SupportLink.Content" xml:space="preserve">
+    <value>contact support</value>
+  </data>
+  <data name="TermsOfUseLink.Content" xml:space="preserve">
+    <value>terms of use</value>
+  </data>
+  <data name="UnitsFieldImperial.Content" xml:space="preserve">
+    <value>imperial</value>
+  </data>
+  <data name="UnitsFieldImperialExample.Text" xml:space="preserve">
+    <value>lbs, ", oz</value>
+  </data>
+  <data name="UnitsFieldLabel.Text" xml:space="preserve">
+    <value>units</value>
+  </data>
+  <data name="UnitsFieldMetric.Content" xml:space="preserve">
+    <value>metric</value>
+  </data>
+  <data name="UnitsFieldMetricExample.Text" xml:space="preserve">
+    <value>kg, cm, ml</value>
+  </data>
+  <data name="Unit_Length_Imperial" xml:space="preserve">
+    <value>"</value>
+  </data>
+  <data name="Unit_Length_Metric" xml:space="preserve">
+    <value>cm</value>
+  </data>
+  <data name="Unit_Weight_Imperial" xml:space="preserve">
+    <value>lbs</value>
+  </data>
+  <data name="Unit_Weight_Metric" xml:space="preserve">
+    <value>kg</value>
+  </data>
+  <data name="VersionFieldLabel.Text" xml:space="preserve">
+    <value>version</value>
+  </data>
+  <data name="WeightSinceBirthGraph.Text" xml:space="preserve">
+    <value>baby's weight by week</value>
+  </data>
+  <data name="Exception_NavigationFailed" xml:space="preserve">
+    <value>navigation failed</value>
+  </data>
+  <data name="Format_ActivityAgoHours" xml:space="preserve">
+    <value> {0:%h} hr {0:%m} min ago</value>
+  </data>
+  <data name="Format_ActivityAgoMinutes" xml:space="preserve">
+    <value> {0:%m} min ago</value>
+  </data>
+  <data name="Format_ActivityDueTo" xml:space="preserve">
+    <value> is due to {0}</value>
+  </data>
+  <data name="Format_ActivityInHours" xml:space="preserve">
+    <value> in {0:%h} hr {0:%m} min</value>
+  </data>
+  <data name="Format_ActivityInMinutes" xml:space="preserve">
+    <value> in {0:%m} min</value>
+  </data>
+  <data name="LoadingStatus_UpdatingServer" xml:space="preserve">
+    <value>updating server</value>
+  </data>
+  <data name="AccountSignedInLabel.Text" xml:space="preserve">
+    <value>You are signed in to Feed Time and Azure Mobile Services with your Microsoft account</value>
+  </data>
+  <data name="SignOutButon.Content" xml:space="preserve">
+    <value>sign out</value>
+  </data>
+  <data name="Dialog_LoginNotCompleted" xml:space="preserve">
+    <value>login could not be completed, please try again or contact the developer for support</value>
+  </data>
+  <data name="LoadingStatus_Login" xml:space="preserve">
+    <value>loging in</value>
+  </data>
+  <data name="TotalChangesLabel.Text" xml:space="preserve">
+    <value>changes</value>
+  </data>
+  <data name="TotalFeedsLabel.Text" xml:space="preserve">
+    <value>feeds</value>
+  </data>
+  <data name="TotalSleepTimeLabel.Text" xml:space="preserve">
+    <value>sleeping</value>
+  </data>
+  <data name="Unit_Time_Hours" xml:space="preserve">
+    <value>hrs</value>
+  </data>
+  <data name="Unit_Time_Minutes" xml:space="preserve">
+    <value>min</value>
+  </data>
+  <data name="CreateBabyPageName.Text" xml:space="preserve">
+    <value>create baby</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>feed time</value>
+  </data>
+</root>

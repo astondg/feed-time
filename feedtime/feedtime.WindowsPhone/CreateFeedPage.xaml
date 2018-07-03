@@ -1,0 +1,133 @@
+﻿<pages:CreateFeedPageBase
+    x:Class="FeedTime.CreateFeedPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:pages="using:FeedTime.Pages"
+    xmlns:local="using:FeedTime"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Name="AppBarStopFeed" x:Uid="AppBarStopFeed" Icon="Stop" Label="end feed" Command="{Binding Update}" />
+                <AppBarButton x:Name="AppBarCancelFeed" x:Uid="AppBarDeleteFeed" Icon="Delete" Label="delete feed" Command="{Binding Delete}" />
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+    
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Panel -->
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="{StaticResource AppName}" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+            <TextBlock Text="feed" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+        </StackPanel>
+
+        <!-- Content -->
+        <ScrollViewer Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition MinHeight="150" Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.ColumnSpan="3" Grid.Row="0" Margin="0,0,0,24">
+                    <TextBlock Style="{StaticResource BaseTextBlockStyle}" TextWrapping="Wrap">A feed has started. Once it is complete, enter the details below and tap the stop button at the bottom of this page.</TextBlock>
+                    <TextBlock Style="{StaticResource BaseTextBlockStyle}" TextWrapping="Wrap" Margin="0,6,0,0" Visibility="{Binding NfcInitiated, Converter={StaticResource BoolToVisibilityConverter}}">
+                        You can return to the active feed at any time by tapping the NFC tag again.
+                    </TextBlock>
+                </StackPanel>
+                <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource BaseTextBlockStyle}" Text="started at" />
+                <TimePicker Grid.Column="1" Grid.Row="1" Time="{Binding StartTime, Mode=TwoWay}" Background="{StaticResource FeedBrush}" BorderThickness="2,2,0,2" />
+                <DatePicker Grid.Column="2" Grid.Row="1" Date="{Binding StartDate, Mode=TwoWay}" Background="{StaticResource FeedBrush}" />
+                <TextBlock Grid.Column="0" Grid.Row="2" Style="{StaticResource BaseTextBlockStyle}" VerticalAlignment="Center">duration</TextBlock>
+                <TimePicker x:Name="DurationPicker" Grid.Column="2" Grid.Row="2" Time="{Binding Duration, Mode=TwoWay}" ClockIdentifier="24HourClock" Background="{StaticResource FeedBrush}" />
+                <StackPanel Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource BaseTextBlockStyle}">amount</TextBlock>
+                    <TextBlock Margin="6,0,0,0" Style="{StaticResource BaseTextBlockStyle}" Text="{Binding CurrentVolumeUnit}"></TextBlock>
+                </StackPanel>
+                <TextBox Grid.Column="2" Grid.Row="3" Text="{Binding MillilitresConsumed, Mode=TwoWay}" Background="{StaticResource FeedBrush}"></TextBox>
+                <TextBlock Grid.ColumnSpan="3" Grid.Row="4" Margin="0,24,0,0" Style="{StaticResource BaseTextBlockStyle}">side</TextBlock>
+                <Button Grid.Column="0" Grid.Row="5" HorizontalAlignment="Center"
+                           Style="{StaticResource NakedTextButton}"
+                           FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}"
+                           Opacity="{Binding FeedingSide, Converter={StaticResource SelectedToOpacityConverter}, ConverterParameter={StaticResource Enum0}}"
+                           Command="{Binding SetFeedingSide}" CommandParameter="{StaticResource Enum0}">👈</Button>
+                <Button Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center"
+                           Style="{StaticResource NakedTextButton}"
+                           FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}"
+                           Opacity="{Binding FeedingSide, Converter={StaticResource SelectedToOpacityConverter}, ConverterParameter={StaticResource Enum1}}"
+                           Command="{Binding SetFeedingSide}" CommandParameter="{StaticResource Enum1}">both</Button>
+                <Button Grid.Column="2" Grid.Row="5" HorizontalAlignment="Center"
+                           Style="{StaticResource NakedTextButton}"
+                           FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}"
+                           Opacity="{Binding FeedingSide, Converter={StaticResource SelectedToOpacityConverter}, ConverterParameter={StaticResource Enum2}}"
+                           Command="{Binding SetFeedingSide}" CommandParameter="{StaticResource Enum2}">👉</Button>                
+                <TextBlock Grid.ColumnSpan="3" Grid.Row="6" Margin="0,24,0,0" Style="{StaticResource BaseTextBlockStyle}">how baby felt</TextBlock>
+                <Button Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center"
+                           Style="{StaticResource NakedTextButton}"
+                           FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}"
+                           Opacity="{Binding HowBabyFelt, Converter={StaticResource SelectedToOpacityConverter}, ConverterParameter={StaticResource Enum0}}"
+                           Command="{Binding SetHowBabyFelt}" CommandParameter="{StaticResource Enum0}">😞</Button>
+                <Button Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center"
+                           Style="{StaticResource NakedTextButton}"
+                           FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}"
+                           Opacity="{Binding HowBabyFelt, Converter={StaticResource SelectedToOpacityConverter}, ConverterParameter={StaticResource Enum1}}"
+                           Command="{Binding SetHowBabyFelt}" CommandParameter="{StaticResource Enum1}">😐</Button>
+                <Button Grid.Column="2" Grid.Row="7" HorizontalAlignment="Center"
+                           Style="{StaticResource NakedTextButton}"
+                           FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}"
+                           Opacity="{Binding HowBabyFelt, Converter={StaticResource SelectedToOpacityConverter}, ConverterParameter={StaticResource Enum2}}"
+                           Command="{Binding SetHowBabyFelt}" CommandParameter="{StaticResource Enum2}">😃</Button>
+                <TextBlock Grid.ColumnSpan="3" Grid.Row="8" Style="{StaticResource BaseTextBlockStyle}">how parent felt</TextBlock>
+                <Button Grid.Column="0" Grid.Row="9" HorizontalAlignment="Center"
+                           Style="{StaticResource NakedTextButton}"
+                           FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}"
+                           Opacity="{Binding HowParentFelt, Converter={StaticResource SelectedToOpacityConverter}, ConverterParameter={StaticResource Enum0}}"
+                           Command="{Binding SetHowParentFelt}" CommandParameter="{StaticResource Enum0}" FontFamily="Global User Interface">😞</Button>
+                <Button Grid.Column="1" Grid.Row="9" HorizontalAlignment="Center"
+                           Style="{StaticResource NakedTextButton}"
+                           FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}"
+                           Opacity="{Binding HowParentFelt, Converter={StaticResource SelectedToOpacityConverter}, ConverterParameter={StaticResource Enum1}}"
+                           Command="{Binding SetHowParentFelt}" CommandParameter="{StaticResource Enum1}">😐</Button>
+                <Button Grid.Column="2" Grid.Row="9" HorizontalAlignment="Center"
+                           Style="{StaticResource NakedTextButton}"
+                           FontSize="{StaticResource TextStyleExtraExtraLargeFontSize}"
+                           Opacity="{Binding HowParentFelt, Converter={StaticResource SelectedToOpacityConverter}, ConverterParameter={StaticResource Enum2}}"
+                           Command="{Binding SetHowParentFelt}" CommandParameter="{StaticResource Enum2}">😃</Button>
+                <TextBlock Grid.ColumnSpan="3" Grid.Row="10" Style="{StaticResource BaseTextBlockStyle}">notes</TextBlock>
+                <TextBox Grid.ColumnSpan="3" Grid.Row="11" VerticalAlignment="Stretch" AcceptsReturn="True" Text="{Binding Notes, Mode=TwoWay}"></TextBox>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</pages:CreateFeedPageBase>

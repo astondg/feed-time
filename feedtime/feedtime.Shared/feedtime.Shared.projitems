@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="SharedProjectFile_SccProperties">
+    <SharedProjectFile_ProjectGuid>{469a5d9b-59bf-442a-bc25-1501b67d210f}</SharedProjectFile_ProjectGuid>
+    <SharedProjectFile_SccProjectName>SAK</SharedProjectFile_SccProjectName>
+    <SharedProjectFile_SccAuxPath>SAK</SharedProjectFile_SccAuxPath>
+    <SharedProjectFile_SccLocalPath>SAK</SharedProjectFile_SccLocalPath>
+    <SharedProjectFile_SccProvider>SAK</SharedProjectFile_SccProvider>
+  </PropertyGroup>
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>7e23c07e-eb17-4dc4-9bf7-753f8bfa24df</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>FeedTime</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="$(MSBuildThisFileDirectory)AccessTokenRetriever.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Common\BackgroundTaskRegistrar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\BugSenseLogger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\NfcService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\RelayCommand`1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ViewModelNavigationParameter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\NavigationHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ObservableDictionary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\RelayCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\SuspensionManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\NumberPicker.xaml.cs">
+      <DependentUpon>NumberPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ActivityViewModelDataTemplateSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ActivityToStatusConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\BoolInverterConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\DateTimeOffsetToStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\GenderToEmoticonConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\NextScheduledActivityToStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\NullableDoubleToStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ObjectToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\SelectedToOpacityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\TimeSpanToGreatestUnitStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\TimeSpanToStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\LinqExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ModelExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\PackageExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\SerializationExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ViewModelExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\CreateBabyPageBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\CreateMeasurementPageBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\CreateChangePageBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\CreateSleepPageBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\CreateFeedPageBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\MainPageBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SampleData\SampleDataSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Strings\Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ActivityScheduleViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ActivityViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BabyViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ChangeActivityViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ManageNfcTagsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DataTrendsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\FamilyViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\FeedActivityViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MeasurementViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SleepActivityViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)SampleData\SampleData.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\NumberPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+</Project>

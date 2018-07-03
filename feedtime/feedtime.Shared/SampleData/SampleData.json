@@ -1,0 +1,173 @@
+﻿{
+    "CreateFeedText": "feed",
+    "CreateSleepText": "sleep",
+    "CurrentBaby": {
+        "Id": "abc123",
+        "GivenName": "polly",
+        "AdditionalName": "test",
+        "FamilyName": "pickle",
+        "DisplayName": "polly test pickle",
+        "DateOfBirth": {
+                "DateTime": "/Date(1418322600000)/",
+                "OffsetMinutes": 0
+            },
+        "TimeOfBirth": "PT10H0M43.1671969S",
+        "Age": "2 months",
+        "Gender": 0,
+        "Family": { "Id": "abc123" }
+    },
+    "LatestMeasurement": {
+        "Length": 24.5,
+        "Weight": 3.9
+    },
+    "CurrentActivities": [ ],
+    "ActivityHistory": [
+        {
+            "Name": "Feed",
+            "StartDate": {
+                "DateTime": "/Date(1418322600000)/",
+                "OffsetMinutes": 120
+            },
+            "Duration": "PT0H30M0.0000000S",
+            "Notes": null
+        },
+        {
+            "Name": "Sleep",
+            "StartDate": {
+                "DateTime": "/Date(1418322600000)/",
+                "OffsetMinutes": 65
+            },
+            "Duration": "PT0H120M0.0000000S",
+            "Notes": "Some notes here, really, really long. Even longer than that. Keep going. That's the way."
+        },
+        {
+            "Name": "Change",
+            "StartDate": {
+                "DateTime": "/Date(1418322600000)/",
+                "OffsetMinutes": 60
+            },
+            "Duration": "PT0H0M0.0000000S",
+            "Notes": "Short note"
+        },
+        {
+            "Name": "Feed",
+            "StartDate": {
+                "DateTime": "/Date(1418322600000)/",
+                "OffsetMinutes": 0
+            },
+            "Duration": "PT0H40M0.0000000S",
+            "Notes": null
+        }
+    ],
+    "Babies": [
+        {
+            "Id": "abc123",
+            "GivenName": "polly",
+            "AdditionalName": "test",
+            "FamilyName": "pickle",
+            "DateOfBirth": {
+                    "DateTime": "/Date(1418322600000)/",
+                    "OffsetMinutes": 0
+                },
+            "TimeOfBirth": "PT10H0M43.1671969S",
+            "Gender": 0,
+            "Family": { "Id": "abc123" }
+        },
+        {
+            "Id": "abc124",
+            "GivenName": "peter",
+            "AdditionalName": "test",
+            "FamilyName": "pickle",
+            "DateOfBirth": {
+                    "DateTime": "/Date(1418322600000)/",
+                    "OffsetMinutes": 0
+                },
+            "TimeOfBirth": "PT10H0M43.1671969S",
+            "Gender": 1,
+            "Family": { "Id": "abc123" }
+        },
+        {
+            "Id": "abc125",
+            "GivenName": "john",
+            "AdditionalName": "test",
+            "FamilyName": "pickle",
+            "DateOfBirth": {
+                    "DateTime": "/Date(1418322600000)/",
+                    "OffsetMinutes": 0
+                },
+            "TimeOfBirth": "PT10H0M43.1671969S",
+            "Gender": 2,
+            "Family": { "Id": "abc123" }
+        },
+        {
+            "Id": "abc125",
+            "GivenName": "john",
+            "AdditionalName": "test",
+            "FamilyName": "pickle",
+            "DateOfBirth": {
+                    "DateTime": "/Date(1418322600000)/",
+                    "OffsetMinutes": 0
+                },
+            "TimeOfBirth": "PT10H0M43.1671969S",
+            "Gender": 2,
+            "Family": { "Id": "abc123" }
+        }
+    ],
+    "DataTrends": {
+        "SleepsOverLastDay": [
+            { "Hour": "0", "IsActive": 0 },
+            { "Hour": "1", "IsActive": 1 },
+            { "Hour": "2", "IsActive": 0 },
+            { "Hour": "3", "IsActive": 0 },
+            { "Hour": "4", "IsActive": 1 },
+            { "Hour": "5", "IsActive": 1 },
+            { "Hour": "6", "IsActive": 0 },
+            { "Hour": "7", "IsActive": 1 }
+        ],
+        "FeedsOverLastDay": [
+            { "Hour": "0", "IsActive": 1 },
+            { "Hour": "1", "IsActive": 0 },
+            { "Hour": "2", "IsActive": 1 },
+            { "Hour": "3", "IsActive": 1 },
+            { "Hour": "4", "IsActive": 0 },
+            { "Hour": "5", "IsActive": 0 },
+            { "Hour": "6", "IsActive": 1 },
+            { "Hour": "7", "IsActive": 0 }
+        ],
+        "ChangesOverLastDay": [
+            { "Hour": "0", "IsActive": 1 },
+            { "Hour": "1", "IsActive": 0 },
+            { "Hour": "2", "IsActive": 1 },
+            { "Hour": "3", "IsActive": 0 },
+            { "Hour": "4", "IsActive": 1 },
+            { "Hour": "5", "IsActive": 0 },
+            { "Hour": "6", "IsActive": 1 },
+            { "Hour": "7", "IsActive": 0 }
+
+        ],
+        "BabysMoodOverLastWeek": [
+            { "Day": "12th", "Feeling": 1 },
+            { "Day": "13th", "Feeling": 2 },
+            { "Day": "14th", "Feeling": 1 },
+            { "Day": "15th", "Feeling": 1 },
+            { "Day": "16th", "Feeling": 3 },
+            { "Day": "17th", "Feeling": 2 },
+            { "Day": "18th", "Feeling": 3 }
+        ],
+        "ParentsMoodOverLastWeek": [
+            { "Day": "12th", "Feeling": 2 },
+            { "Day": "13th", "Feeling": 2 },
+            { "Day": "14th", "Feeling": 1 },
+            { "Day": "15th", "Feeling": 1 },
+            { "Day": "16th", "Feeling": 2 },
+            { "Day": "17th", "Feeling": 3 },
+            { "Day": "18th", "Feeling": 3 }
+        ],
+        "LengthSinceBirth": [
+
+        ],
+        "WeightSinceBirth": [
+
+        ]
+    }
+}

@@ -1,0 +1,249 @@
+﻿<pages:MainPageBase
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:pages="using:FeedTime.Pages"
+    xmlns:local="using:FeedTime"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:FeedTime.SampleData"
+    xmlns:chart="using:Sparrow.Chart"
+    x:Class="FeedTime.MainPage"
+    mc:Ignorable="d"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Mode=Self}}"
+    d:DataContext="{Binding Source={d:DesignData Source=../FeedTime.Shared/SampleData/SampleData.json, Type=data:SampleDataSource}}"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    x:Name="mainPage">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="HubSectionHeaderTemplate">
+                <TextBlock Margin="0,0,0,-9.5" Text="{Binding}"/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <!--<CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="AppBarNfc" x:Uid="AppBarNfc" Label="" Click="AppBarNfcButton_Click" />
+            </CommandBar.SecondaryCommands>-->
+            <AppBarButton x:Name="AppBarSettings" x:Uid="AppBarSettings" Icon="Setting" Label="" Click="AppBarSettingsButton_Click" />
+            <AppBarButton x:Name="AppBarEditBaby" x:Uid="AppBarEditBaby" Icon="Edit" Label="" Click="AppBarEditBabyButton_Click" />
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid x:Name="LayoutRoot">
+        <Hub x:Name="Hub" x:Uid="Hub" Header="{StaticResource AppName}">
+            <HubSection x:Uid="HubSectionActions" x:Name="MainSection">
+                <DataTemplate>
+                    <ScrollViewer Margin="0,-24,0,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <GridView Grid.Row="0"
+								ScrollViewer.HorizontalScrollMode="Auto"
+								ScrollViewer.VerticalScrollMode="Disabled"
+								ItemsSource="{Binding Babies}"
+								SelectedItem="{Binding CurrentBaby}">
+                                <GridView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </GridView.ItemsPanel>
+                                <GridView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button HorizontalAlignment="Center" Style="{StaticResource NakedButton}">
+                                            <StackPanel>
+                                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" FontSize="{StaticResource TextStyleExtraLargeFontSize}" Text="{Binding Gender, Converter={StaticResource GenderToEmoticonCovnerter}}" />
+                                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding GivenName}" />
+                                            </StackPanel>
+                                        </Button>
+                                    </DataTemplate>
+                                </GridView.ItemTemplate>
+                            </GridView>
+                            <TextBlock Grid.Row="1" Margin="0,12,0,0" VerticalAlignment="Center" Style="{StaticResource BaseTextBlockStyle}" TextWrapping="Wrap" Text="{Binding NextActivity}" Visibility="{Binding NextActivity, Converter={StaticResource ObjectToVisibilityConverter}}" />
+                            <Button x:Uid="CreateFeedButton" Grid.Row="2" Margin="0,6" HorizontalAlignment="Stretch" Style="{StaticResource MainButton}" Background="{StaticResource FeedBrush}" Content="{Binding CreateFeedText}" Click="FeedButton_Click" IsEnabled="{Binding MainLoadingComplete}" />
+                            <Button x:Uid="CreateSleepButton" Grid.Row="3" Margin="0,6" HorizontalAlignment="Stretch" Style="{StaticResource MainButton}" Background="{StaticResource SleepBrush}" Content="{Binding CreateSleepText}" Click="SleepButton_Click" IsEnabled="{Binding MainLoadingComplete}" />
+                            <Button x:Uid="CreateChangeButton" Grid.Row="4" Margin="0,6" HorizontalAlignment="Stretch" Style="{StaticResource MainButton}" Background="{StaticResource ChangeBrush}" Content="" Click="ChangeButton_Click" IsEnabled="{Binding MainLoadingComplete}" />
+                            <Button x:Uid="CreateMeasurementButton" Grid.Row="5" Margin="0,6" HorizontalAlignment="Stretch" Style="{StaticResource MainButton}" Content="" Click="MeasureButton_Click" IsEnabled="{Binding MainLoadingComplete}" />
+                        </Grid>
+                    </ScrollViewer>
+                </DataTemplate>
+            </HubSection>
+
+            <HubSection x:Uid="HubSectionStatistics" Header=""
+				HeaderTemplate="{ThemeResource HubSectionHeaderTemplate}">
+                <DataTemplate>
+                    <ScrollViewer>
+                        <StackPanel>
+                            <TextBlock x:Uid="StatusPlaceholder" Style="{StaticResource SubtleTextBlockStyle}" Text="" TextWrapping="Wrap" Visibility="{Binding DataTrends, ConverterParameter=NEGATE, Converter={StaticResource ObjectToVisibilityConverter}, TargetNullValue=Visible}" />
+                            <Grid Visibility="{Binding DataTrends, Converter={StaticResource ObjectToVisibilityConverter}, TargetNullValue=Collapsed}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <ListView Grid.Row="0"
+									Margin="0,0,0,24"
+									ItemsSource="{Binding MostRecentActivities}">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="{Binding Converter={StaticResource ActivityToStatusConverter}}" />
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                                <TextBlock x:Uid="StatusAveragesHeading" Grid.ColumnSpan="2" Grid.Row="1" Margin="0,0,0,12" Style="{StaticResource SubtleTextBlockStyle}" Text="" />
+                                <TextBlock Grid.Column="0" Grid.Row="2" Margin="0,6,0,0" Style="{StaticResource BaseTextBlockStyle}" Text="feeds per day" />
+                                <TextBlock Grid.Column="1" Grid.Row="2" Margin="0,6,0,0" Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Right" Text="{Binding DataTrends.AverageFeedsPerDay}" />
+                                <TextBlock Grid.Column="0" Grid.Row="3" Margin="0,6,0,0" Style="{StaticResource BaseTextBlockStyle}" Text="feed duration" />
+                                <TextBlock Grid.Column="1" Grid.Row="3" Margin="0,6,0,0" Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Right" Text="{Binding DataTrends.AverageFeedDuration, Converter={StaticResource TimeSpanToStringConverter}}" />
+                                <TextBlock Grid.Column="0" Grid.Row="4" Margin="0,6,0,0" Style="{StaticResource BaseTextBlockStyle}" Text="feed volume" />
+                                <TextBlock Grid.Column="1" Grid.Row="4" Margin="0,6,0,0" Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Right" Text="{Binding DataTrends.AverageFeedVolume}" />
+                                <TextBlock Grid.Column="0" Grid.Row="5" Margin="0,6,0,0" Style="{StaticResource BaseTextBlockStyle}" Text="sleeps per day" />
+                                <TextBlock Grid.Column="1" Grid.Row="5" Margin="0,6,0,0" Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Right" Text="{Binding DataTrends.AverageSleepsPerDay}" />
+                                <TextBlock Grid.Column="0" Grid.Row="6" Margin="0,6,0,0" Style="{StaticResource BaseTextBlockStyle}" Text="sleep duration" />
+                                <TextBlock Grid.Column="1" Grid.Row="6" Margin="0,6,0,0" Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Right" Text="{Binding DataTrends.AverageSleepDuration, Converter={StaticResource TimeSpanToStringConverter}}" />
+                                <TextBlock Grid.Column="0" Grid.Row="7" Margin="0,6,0,0" Style="{StaticResource BaseTextBlockStyle}" Text="changes per day" />
+                                <TextBlock Grid.Column="1" Grid.Row="7" Margin="0,6,0,0" Style="{StaticResource BaseTextBlockStyle}" TextAlignment="Right" Text="{Binding DataTrends.AverageChangesPerDay}" />
+                                <Button x:Uid="ActivityHistoryButton" Grid.ColumnSpan="2" Grid.Row="8" Margin="0,32,0,0" HorizontalAlignment="Stretch" Style="{StaticResource MainButton}" Content="" Click="ActivityHistoryButton_Click" />
+                            </Grid>
+                        </StackPanel>
+                    </ScrollViewer>
+                </DataTemplate>
+            </HubSection>
+
+            <HubSection x:Uid="HubSectionRhythm" Header=""
+				HeaderTemplate="{ThemeResource HubSectionHeaderTemplate}">
+                <DataTemplate>
+                    <ScrollViewer>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" HorizontalAlignment="Stretch" Visibility="{Binding CanShowActivityByHourGraph, TargetNullValue=Visible, ConverterParameter=NEGATE, Converter={StaticResource BoolToVisibilityConverter}}">
+                                <Border BorderThickness="0" MinHeight="96">
+                                    <TextBlock x:Uid="ActivityByHourGraphPlaceholder" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource SubtleTextBlockStyle}" Text="" />
+                                </Border>
+                                <Border Margin="24,0,24,0" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" BorderThickness="1" BorderBrush="{StaticResource SubtleBrush}" Height="2"/>
+                            </StackPanel>
+                            <chart:SparrowChart Grid.Row="0" MinHeight="280" BorderThickness="0" ContainerBorderStyle="{StaticResource NoBorders}" Visibility="{Binding CanShowActivityByHourGraph, Converter={StaticResource BoolToVisibilityConverter}}">
+                                <chart:SparrowChart.YAxis>
+                                    <chart:LinearYAxis MinValue="0" MaxValue="1" Interval="1" ShowCrossLines="False" />
+                                </chart:SparrowChart.YAxis>
+                                <chart:SparrowChart.XAxis>
+                                    <chart:DateTimeXAxis StringFormat="%H" Interval="02:00" ShowCrossLines="False" />
+                                </chart:SparrowChart.XAxis>
+                                <chart:AreaSeries PointsSource="{Binding DataTrends.FeedsOverLastDay}" XPath="Time" YPath="IsActive" Label="feed" Stroke="{StaticResource FeedBrush}" Fill="{StaticResource FeedBrush}" />
+                                <chart:AreaSeries PointsSource="{Binding DataTrends.SleepsOverLastDay}" XPath="Time" YPath="IsActive" Stroke="{StaticResource SleepBrush}" Fill="{StaticResource SleepBrush}" />
+                                <chart:AreaSeries PointsSource="{Binding DataTrends.ChangesOverLastDay}" XPath="Time" YPath="IsActive" Stroke="{StaticResource ChangeBrush}" Fill="{StaticResource ChangeBrush}" />
+                            </chart:SparrowChart>
+                            <StackPanel Grid.Row="1" HorizontalAlignment="Stretch" Visibility="{Binding CanShowMoodByDayGraph, TargetNullValue=Visible, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=NEGATE}">
+                                <Border BorderThickness="0" MinHeight="96">
+                                    <TextBlock x:Uid="MoodByDayGraph" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource SubtleTextBlockStyle}" Text="" />
+                                </Border>
+                                <Border Margin="24,0,24,0" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" BorderThickness="1" BorderBrush="{StaticResource SubtleBrush}" Height="2"/>
+                            </StackPanel>
+                            <chart:SparrowChart Grid.Row="1" Margin="0,24,0,0" MinHeight="280" BorderThickness="0" ContainerBorderStyle="{StaticResource NoBorders}" Visibility="{Binding CanShowMoodByDayGraph, Converter={StaticResource BoolToVisibilityConverter}}">
+                                <chart:SparrowChart.YAxis>
+                                    <chart:LinearYAxis StringFormat="😃;😞;😐" Interval="1" MinValue="-1" MaxValue="1" ShowCrossLines="False" />
+                                </chart:SparrowChart.YAxis>
+                                <chart:SparrowChart.XAxis>
+                                    <chart:DateTimeXAxis StringFormat="dd" Interval="1.00:00" ShowCrossLines="False" />
+                                </chart:SparrowChart.XAxis>
+                                <chart:LineSeries PointsSource="{Binding DataTrends.BabysMoodOverLastWeek}" XPath="Date" YPath="Feeling" Label="baby" Stroke="#FF96CBFF" StrokeThickness="3" />
+                                <chart:LineSeries PointsSource="{Binding DataTrends.ParentsMoodOverLastWeek}" XPath="Date" YPath="Feeling" Label="parent" Stroke="{ThemeResource PhoneAccentBrush}" StrokeThickness="3" />
+                            </chart:SparrowChart>
+                            <StackPanel Grid.Row="2" HorizontalAlignment="Stretch" Visibility="{Binding CanShowMeasurementsByWeekGraph, TargetNullValue=Visible, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=NEGATE}">
+                                <Border BorderThickness="0" MinHeight="96">
+                                    <TextBlock x:Uid="LengthSinceBirthGraph" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource SubtleTextBlockStyle}" Text="" />
+                                </Border>
+                                <Border Margin="24,0,24,0" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" BorderThickness="1" BorderBrush="{StaticResource SubtleBrush}" Height="2"/>
+                            </StackPanel>
+                            <chart:SparrowChart Grid.Row="2" Margin="0,24,0,0" MinHeight="280" BorderThickness="0" ContainerBorderStyle="{StaticResource NoBorders}" Visibility="{Binding CanShowMeasurementsByWeekGraph, Converter={StaticResource BoolToVisibilityConverter}}">
+                                <chart:SparrowChart.YAxis>
+                                    <chart:LinearYAxis StringFormat="F0" MinValue="0" Interval="10" ShowCrossLines="False" />
+                                </chart:SparrowChart.YAxis>
+                                <chart:SparrowChart.XAxis>
+                                    <chart:DateTimeXAxis StringFormat="dd/mm" Interval="7.00:00" ShowCrossLines="False" />
+                                </chart:SparrowChart.XAxis>
+                                <chart:LineSeries PointsSource="{Binding DataTrends.LengthSinceBirth}" XPath="Date" YPath="Measurement" Stroke="{StaticResource MeasureBrush}" StrokeThickness="3" />
+                            </chart:SparrowChart>
+                            <StackPanel Grid.Row="3" HorizontalAlignment="Stretch" Visibility="{Binding CanShowMeasurementsByWeekGraph, TargetNullValue=Visible, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=NEGATE}">
+                                <Border BorderThickness="0" MinHeight="96">
+                                    <TextBlock x:Uid="WeightSinceBirthGraph" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource SubtleTextBlockStyle}" Text="" />
+                                </Border>
+                                <Border Margin="24,0,24,0" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" BorderThickness="1" BorderBrush="{StaticResource SubtleBrush}" Height="2"/>
+                            </StackPanel>
+                            <chart:SparrowChart Grid.Row="3" Margin="0,24,0,0" MinHeight="280" BorderThickness="0" ContainerBorderStyle="{StaticResource NoBorders}" Visibility="{Binding CanShowMeasurementsByWeekGraph, Converter={StaticResource BoolToVisibilityConverter}}">
+                                <chart:SparrowChart.YAxis>
+                                    <chart:LinearYAxis StringFormat="F0" MinValue="0" Interval="1" ShowCrossLines="False" />
+                                </chart:SparrowChart.YAxis>
+                                <chart:SparrowChart.XAxis>
+                                    <chart:DateTimeXAxis StringFormat="dd/mm" Interval="7.00:00" ShowCrossLines="False" />
+                                </chart:SparrowChart.XAxis>
+                                <chart:LineSeries PointsSource="{Binding DataTrends.WeightSinceBirth}" XPath="Date" YPath="Measurement" Stroke="{StaticResource MeasureBrush}" StrokeThickness="3" />
+                            </chart:SparrowChart>
+                        </Grid>
+                    </ScrollViewer>
+                </DataTemplate>
+            </HubSection>
+
+            <HubSection x:Uid="HubSectionBabyDetails" x:Name="BabyDetailsSection" Header=""
+				HeaderTemplate="{ThemeResource HubSectionHeaderTemplate}">
+                <DataTemplate>
+                    <ScrollViewer>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock x:Uid="BabyDetailsNameField" Grid.ColumnSpan="3" Grid.Row="0" Style="{StaticResource BaseTextBlockStyle}" Text="" />
+                            <TextBlock Grid.ColumnSpan="3" Grid.Row="1" Margin="0,0,0,12"  Style="{StaticResource BaseTextBlockStyle}" Text="{Binding CurrentBaby.DisplayName}" />
+                            <TextBlock x:Uid="BabyDetailsDobField" Grid.ColumnSpan="3" Grid.Row="2" Style="{StaticResource BaseTextBlockStyle}" Text="" />
+                            <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Margin="0,0,0,12" Style="{StaticResource BaseTextBlockStyle}" Text="{Binding CurrentBaby.DateOfBirth, Converter={StaticResource DateTimeOffsetToStringConverter}}"  />
+                            <TextBlock x:Name="BabysAgeTextBlock" Grid.Column="2" Grid.Row="3" Margin="0,0,0,12" HorizontalAlignment="Right" Style="{StaticResource BaseTextBlockStyle}" Text="{Binding CurrentBaby.Age}" Tapped="BabysAgeTextBlock_Tapped" />
+                            <TextBlock x:Uid="BabyDetailsWeightField" Grid.ColumnSpan="3" Grid.Row="4" Style="{StaticResource BaseTextBlockStyle}" Text="" Visibility="{Binding ShowWeightMeasurement, Converter={StaticResource BoolToVisibilityConverter}}" />
+                            <TextBlock Grid.Row="5" Style="{StaticResource BaseTextBlockStyle}" Text="{Binding LatestMeasurement.Weight, Converter={StaticResource NullableDoubleToStringConverter}}" Visibility="{Binding ShowWeightMeasurement, Converter={StaticResource BoolToVisibilityConverter}}"  />
+                            <TextBlock Grid.Column="1" Grid.Row="5" Margin="6,0,0,0" Style="{StaticResource BaseTextBlockStyle}" Text="{Binding CurrentWeightUnit}" Visibility="{Binding ShowWeightMeasurement, Converter={StaticResource BoolToVisibilityConverter}}" />
+                            <TextBlock x:Uid="BabyDetailsLengthField" Grid.ColumnSpan="3" Grid.Row="6" Style="{StaticResource BaseTextBlockStyle}" Text="" Visibility="{Binding ShowLengthMeasurement, Converter={StaticResource BoolToVisibilityConverter}}" />
+                            <TextBlock Grid.Row="7" Style="{StaticResource BaseTextBlockStyle}" Text="{Binding LatestMeasurement.Length, Converter={StaticResource NullableDoubleToStringConverter}}" Visibility="{Binding ShowLengthMeasurement, Converter={StaticResource BoolToVisibilityConverter}}" />
+                            <TextBlock Grid.Column="1" Grid.Row="7" Margin="6,0,0,0" Style="{StaticResource BaseTextBlockStyle}" Text="{Binding CurrentLengthUnit}" Visibility="{Binding ShowLengthMeasurement, Converter={StaticResource BoolToVisibilityConverter}}" />
+                        </Grid>
+                    </ScrollViewer>
+                </DataTemplate>
+            </HubSection>
+        </Hub>
+    </Grid>
+</pages:MainPageBase>

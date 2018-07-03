@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.1">
+  <CommandSet xml:lang="en">
+    <CommandPrefix>Feed Time</CommandPrefix>
+    <Example> start a feed </Example>
+
+    <Command Name="StartFeed">
+      <Example> start a feed </Example>
+      <ListenFor> start feeding {name} </ListenFor>
+      <ListenFor> start [a] feed for {name} </ListenFor>
+      <ListenFor> feed {name} </ListenFor>
+      <ListenFor> start feeding </ListenFor>
+      <ListenFor> start [a] feed </ListenFor>
+      <ListenFor> feed </ListenFor>
+      <Feedback> Starting a feed... </Feedback>
+      <Navigate Target="/CreateFeedPage.xaml" />
+    </Command>
+
+    <Command Name="StopFeed">
+      <Example> stop feeding </Example>
+      <ListenFor> stop feeding {name} </ListenFor>
+      <ListenFor> stop feeding </ListenFor>
+      <ListenFor> stop [a] feed </ListenFor>
+      <Feedback> Stopping a feed... </Feedback>
+      <Navigate Target="/CreateFeedPage.xaml" />
+    </Command>
+
+    <Command Name="StartSleep">
+      <Example> start sleep </Example>
+      <ListenFor> start sleeping {name} </ListenFor>
+      <ListenFor> start [a] sleep for {name} </ListenFor>
+      <ListenFor> sleep {name} </ListenFor>
+      <ListenFor> start sleeping </ListenFor>
+      <ListenFor> start [a] sleep </ListenFor>
+      <ListenFor> sleep </ListenFor>
+      <Feedback> Starting a sleep... </Feedback>
+      <Navigate Target="/CreateSleepPage.xaml" />
+    </Command>
+
+    <Command Name="StopSleep">
+      <Example> stop sleep </Example>
+      <ListenFor> stop sleeping {name} </ListenFor>
+      <ListenFor> stop sleeping </ListenFor>
+      <ListenFor> stop [a] sleep </ListenFor>
+      <Feedback> Stopping a sleep... </Feedback>
+      <Navigate Target="/CreateSleepPage.xaml" />
+    </Command>
+
+    <Command Name="Change">
+      <Example> change </Example>
+      <ListenFor> create [a] change for {name} </ListenFor>
+      <ListenFor> create [a] change </ListenFor>
+      <ListenFor> change {name} </ListenFor>
+      <ListenFor> change [nappy]</ListenFor>
+      <Feedback> Creating a change... </Feedback>
+      <Navigate Target="/CreateChangePage.xaml" />
+    </Command>
+
+    <PhraseTopic Label="name" Scenario="Activity">
+      <Subject> Name </Subject>
+    </PhraseTopic>
+	
+  </CommandSet>
+</VoiceCommands>
+
+<!-- Example -->
+<!--
+
+    The preceding example demonstrates a hypothetical game called 'Contoso ROD3O!' which defines two
+    Commands that a user can say to either start a new game or replay one of three levels in the game.  
+    To initiate the PlayGame command, a user can say "Contoso Rodeo play  a new game" or "Contoso Rodeo
+    play new game". Either phrase will start a new game. To initiate the second Command, a user can say
+    "Contoso Rodeo replay level one", "Contoso Rodeo replay level two", or "Contoso Rodeo replay level 
+    three".
+    The second Command demonstrates how to use a PhraseList with a Command. PhraseLists can be updated 
+    dynamically by the application (e.g., if a user unlocks a new level or game or feature, you might 
+    want to allow the user to give commands for newfeatures after voice commands are already registered.)
+    The third Command demonstrates how the {*} sequence can parallel another command to recognize speech
+    that is not defined in the CommandSet.
+
+  Note:
+
+      [and] Indicates that "and" is optional. Making connecting words like this optional
+            can help both "Contoso Rodeo, play new game" and "open Contoso Rodeo and play
+            a new game" feel natural to speak.
+                 
+      {number} Defined separately from the Command, mapping to "one" or "two" or "three".
+
+-->

@@ -1,0 +1,75 @@
+﻿<Page
+    x:Class="FeedTime.ManageNfcTagsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FeedTime"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Panel -->
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="{StaticResource AppName}" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+            <TextBlock Text="create NFC tags" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+        </StackPanel>
+
+        <!--TODO: Content should be placed within the following grid-->
+        <ScrollViewer Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+            
+                <TextBlock Grid.Row="0" Style="{StaticResource BaseTextBlockStyle}" TextWrapping="Wrap" Text="Creating an NFC tag simplifies initiating a feed, sleep or change activity by allowing you to simply tap your NFC enabled device, e.g. Windows Phone, against the tag.*" />
+                <GridView Grid.Row="1"
+                          Margin="0,12,0,0"
+                          Visibility="{Binding FamilyHasMultipleBabies, Converter={StaticResource BoolToVisibilityConverter}}"
+                          ScrollViewer.HorizontalScrollMode="Auto"
+                          ScrollViewer.VerticalScrollMode="Disabled"
+                          ItemsSource="{Binding Babies}"
+                          SelectedItem="{Binding CurrentBaby}">
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"></StackPanel>
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <!--Opacity="{Binding Converter={StaticResource SelectedToOpacityConverter}, ConverterParameter={Binding DataContext.CurrentBaby, ElementName=mainPage}}"-->
+                            <Button HorizontalAlignment="Center" Style="{StaticResource NakedButton}">
+                                <StackPanel>
+                                    <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" FontSize="{StaticResource TextStyleExtraLargeFontSize}" Text="{Binding Gender, Converter={StaticResource GenderToEmoticonCovnerter}}" />
+                                    <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding GivenName}" />
+                                </StackPanel>
+                            </Button>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+                <Button Grid.Row="2" Margin="0,24,0,0" HorizontalAlignment="Stretch" Content="create feed tag" Command="{Binding Create}" CommandParameter="feed" />
+                <Button Grid.Row="3" HorizontalAlignment="Stretch" Content="create sleep tag" Command="{Binding Create}" CommandParameter="sleep" />
+                <Button Grid.Row="4" HorizontalAlignment="Stretch" Content="create change tag" Command="{Binding Create}" CommandParameter="change" />
+                <TextBlock Grid.Row="5" Margin="0,12,0,0" Style="{StaticResource BaseTextBlockStyle}" Text="* Writable NFC tags in the &lt;FORMAT&gt; can be purchased from Amazon.com" />
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

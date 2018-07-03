@@ -1,0 +1,189 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FeedTime"
+    xmlns:converters="using:FeedTime.Converters">
+    
+    <!-- Colours -->
+    <SolidColorBrush x:Key="ButtonTextBrush" Color="#FF363636" Opacity="1" />
+    <SolidColorBrush x:Key="ButtonDisabledTextBrush" Color="#FF868686" Opacity="1" />
+    <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="#FFECECEC" Opacity="1" />
+
+    <ControlTemplate x:Key="NakedTextButtonTemplate" TargetType="Button">
+        <Grid x:Name="Grid" Background="Transparent">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualStateGroup.Transitions>
+                        <VisualTransition From="Pressed" To="PointerOver">
+                            <Storyboard>
+                                <PointerUpThemeAnimation Storyboard.TargetName="Grid" />
+                            </Storyboard>
+                        </VisualTransition>
+                        <VisualTransition From="PointerOver" To="Normal">
+                            <Storyboard>
+                                <PointerUpThemeAnimation Storyboard.TargetName="Grid" />
+                            </Storyboard>
+                        </VisualTransition>
+                        <VisualTransition From="Pressed" To="Normal">
+                            <Storyboard>
+                                <PointerUpThemeAnimation Storyboard.TargetName="Grid" />
+                            </Storyboard>
+                        </VisualTransition>
+                    </VisualStateGroup.Transitions>
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="PointerOver" />
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <PointerDownThemeAnimation Storyboard.TargetName="Grid" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonPressedForegroundThemeBrush}" />
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OuterBorder" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonPressedBackgroundThemeBrush}" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonDisabledTextBrush}" />
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerBorder" Storyboard.TargetProperty="BorderBrush">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonDisabledBorderThemeBrush}" />
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OuterBorder" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonDisabledBackgroundThemeBrush}" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Border x:Name="OuterBorder" BorderThickness="0" BorderBrush="Transparent" Background="{TemplateBinding Background}" Margin="{ThemeResource PhoneTouchTargetOverhang}">
+                <Border x:Name="InnerBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                    <ContentPresenter x:Name="ContentPresenter" Foreground="{TemplateBinding Foreground}"
+        	                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+        	                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}"
+        	                                            Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
+        	                                            AutomationProperties.AccessibilityView="Raw"/>
+                </Border>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+
+    <!-- Data Tempaltes -->
+    <DataTemplate x:Key="FeedActivityOverviewTemplate">
+        <Grid Margin="0,0,0,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Border Grid.Column="0" Grid.RowSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="12" Background="{StaticResource FeedBrush}" />
+            <TextBlock Grid.Column="1" Grid.Row="0" Margin="12,0,12,0" Style="{StaticResource BaseTextBlockStyle}" Text="{Binding Name}" />
+            <TextBlock Grid.Column="2" Grid.Row="0" Margin="0,0,12,0" Style="{StaticResource BaseTextBlockStyle}" Text="{Binding StartDate, Converter={StaticResource DateTimeOffsetToStringConverter}}" />
+            <TextBlock Grid.Column="3" Grid.Row="0" Style="{StaticResource BaseTextBlockStyle}" Text="{Binding Duration, Converter={StaticResource TimeSpanToStringConverter}}" />
+            <TextBlock Grid.ColumnSpan="3" Grid.Row="1" Margin="12,0,0,0" Visibility="{Binding Notes, Converter={StaticResource ObjectToVisibilityConverter}}" Style="{StaticResource SubtleTextBlockStyle}" FontSize="14" Text="{Binding Notes}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" />
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="SleepActivityOverviewTemplate">
+        <Grid Margin="0,0,0,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Border Grid.Column="0" Grid.RowSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="12" Background="{StaticResource SleepBrush}" />
+            <TextBlock Grid.Column="1" Grid.Row="0" Margin="12,0,12,0" Style="{StaticResource BaseTextBlockStyle}" Text="{Binding Name}" />
+            <TextBlock Grid.Column="2" Grid.Row="0" Margin="0,0,12,0" Style="{StaticResource BaseTextBlockStyle}" Text="{Binding StartDate, Converter={StaticResource DateTimeOffsetToStringConverter}}" />
+            <TextBlock Grid.Column="3" Grid.Row="0" Style="{StaticResource BaseTextBlockStyle}" Text="{Binding Duration, Converter={StaticResource TimeSpanToStringConverter}}" />
+            <TextBlock Grid.ColumnSpan="3" Grid.Row="1" Margin="12,0,0,0" Visibility="{Binding Notes, Converter={StaticResource ObjectToVisibilityConverter}}" Style="{StaticResource SubtleTextBlockStyle}" FontSize="14" Text="{Binding Notes}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" />
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="ChangeActivityOverviewTemplate">
+        <Grid Margin="0,0,0,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Border Grid.Column="0" Grid.RowSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="12" Background="{StaticResource ChangeBrush}" />
+            <TextBlock Grid.Column="1" Grid.Row="0" Margin="12,0,12,0" Style="{StaticResource BaseTextBlockStyle}" Text="{Binding Name}" />
+            <TextBlock Grid.Column="2" Grid.Row="0" Margin="0,0,12,0" Style="{StaticResource BaseTextBlockStyle}" Text="{Binding StartDate, Converter={StaticResource DateTimeOffsetToStringConverter}}" />
+            <TextBlock Grid.ColumnSpan="3" Grid.Row="1" Margin="12,0,0,0" Visibility="{Binding Notes, Converter={StaticResource ObjectToVisibilityConverter}}" Style="{StaticResource SubtleTextBlockStyle}" FontSize="14" Text="{Binding Notes}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" />
+        </Grid>
+    </DataTemplate>
+
+    <!-- Styles -->
+    <Style x:Key="NakedTextButton" TargetType="Button">
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Template" Value="{StaticResource NakedTextButtonTemplate}"/>
+    </Style>
+    <Style x:Key="MainButton" TargetType="Button">
+        <Setter Property="BorderBrush" Value="#7FFFFFFF"/>
+        <Setter Property="Foreground" Value="{StaticResource ButtonTextBrush}"/>
+        <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
+        <Setter Property="Padding" Value="0,6,0,6"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Template" Value="{StaticResource NakedTextButtonTemplate}"/>
+    </Style>
+    <Style TargetType="TimePicker">
+        <Setter Property="FontFamily" Value="{ThemeResource PhoneFontFamilyNormal}"/>
+        <Setter Property="FontSize" Value="{ThemeResource ContentControlFontSize}"/>
+        <Setter Property="Foreground" Value="{StaticResource ButtonTextBrush}"/>
+        <Setter Property="Background" Value="#FFCCCCCC"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="0,6,0,6"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TimePicker">
+                    <StackPanel x:Name="LayoutRoot" Margin="{TemplateBinding Padding}">
+                        <ContentPresenter x:Name="HeaderContentPresenter" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" Margin="0,0,0,-3" Style="{StaticResource HeaderContentPresenterStyle}"/>
+                        <Button x:Name="FlyoutButton" Style="{StaticResource MainButton}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Stretch" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsEnabled="{TemplateBinding IsEnabled}"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="DatePicker">
+    	<Setter Property="FontFamily" Value="{ThemeResource PhoneFontFamilyNormal}"/>
+    	<Setter Property="FontSize" Value="{ThemeResource ContentControlFontSize}"/>
+        <Setter Property="Foreground" Value="{StaticResource ButtonTextBrush}"/>
+        <Setter Property="Background" Value="#FFCCCCCC"/>
+    	<Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="0,6,0,6"/>
+        <Setter Property="BorderThickness" Value="2"/>
+    	<Setter Property="Template">
+    		<Setter.Value>
+    			<ControlTemplate TargetType="DatePicker">
+    				<StackPanel x:Name="LayoutRoot" Margin="{TemplateBinding Padding}">
+    					<ContentPresenter x:Name="HeaderContentPresenter" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" Margin="0,0,0,-3" Style="{StaticResource HeaderContentPresenterStyle}"/>
+                        <Button x:Name="FlyoutButton" Style="{StaticResource MainButton}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Stretch" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsEnabled="{TemplateBinding IsEnabled}"/>
+    				</StackPanel>
+    			</ControlTemplate>
+    		</Setter.Value>
+    	</Setter>
+    </Style>
+    
+    <!-- Template Selectors -->
+    <converters:ActivityViewModelDataTemplateSelector x:Key="ActivityViewModelDataTemplateSelector"
+                                                      FeedTemplate="{StaticResource FeedActivityOverviewTemplate}"
+                                                      SleepTemplate="{StaticResource SleepActivityOverviewTemplate}"
+                                                      ChangeTemplate="{StaticResource ChangeActivityOverviewTemplate}"/>
+</ResourceDictionary>
